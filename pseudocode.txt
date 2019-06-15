@@ -1,0 +1,42 @@
+-Create a trvia game with timed questions
+
+-Create an array of questions
+-Each question should have an array of answers
+-The answers can have more strings than will be presented
+    -This will allow for questions to get randomly generated answers making it slightly more difficult and adds replayability
+    -Math.floor(Math.random() * (1, answerArray.length))
+        -This should be put into a function so everytime it's called a new number is generated
+
+HTML:
+-Create a div to present the question
+    -<div id="question">
+-Create a div to present the answers
+    -<div id="answerPane"
+    -Inside this div, there should be radio options = 4
+    -One right answer and 3 random incorrect answers.
+-Create a win tracker
+    -<div id="tracker>
+        -<p id="winRate">
+            -As questions are answered correctly, increase the win rate
+-Create a loss tracker
+    -Inside the tracker div:
+        -<p id="lossRate">
+            -As questions are answered incorrectly, increase the loss rate
+-Create a div for time remaining
+    -<div id="timeRemaining>
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+JS:
+-Create an array of questions
+    -Perhaps the array should include attributes, with an answers key
+    -Create approx 6 answers.
+        -Math.floor(Math.random(Answers.length))
+        -Select 3 incorrect answers and one normal answer
+        -Randomly display the answers, not in order
+            -This can be done with another random number 
+-Create a timeout for the question
+    -If the time runs up, increase the loss rate
+    -If the question is answered correctly, increase the win rate
+        -Take the win and loss rate and give and average them together to give the player an overall score
+-Create buttons which will update dynamically per question 
