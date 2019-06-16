@@ -1,3 +1,6 @@
+//Load the page prior to launching JS logic
+window.onload=function(){
+
 //Array of questions with another array of answers
 var questionArray = [
     {question: "What is 1+1?", correctAnswer: "2", answers: ["2", "3", "4", "1"]},
@@ -10,7 +13,27 @@ function randomNumber(){
     return randomNum;
 }
 
-//Create a function to display the question and answer
-function displayQuestion(){
-    
+//Grabbing the elements from HTML and creating variables for them
+var quest = document.getElementById("question");
+var timeDiv = document.getElementById("timeRemaining");
+var answerDiv = document.getElementById("answers");
+var winTracker = document.getElementById("winrate");
+var lossTracker = document.getElementById("lossrate");
+
+//Grabbing the button elements and creating variables for them
+//The buttons should be assigned random values from the question array
+var firstBtn = document.getElementById("answerOne");
+var secondBtn = document.getElementById("answerTwo");
+var thirdBtn = document.getElementById("answerThree");
+var fourthBtn = document.getElementById("answerFour");
+
+//Console logs to test
+console.log(questionArray[0].question);
+
+function displayQuestion(i){
+    var display = questionArray[i].question;
+    quest.innerHTML=display;
 }
+
+displayQuestion(0);
+};
