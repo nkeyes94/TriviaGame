@@ -27,13 +27,35 @@ var secondBtn = document.getElementById("answerTwo");
 var thirdBtn = document.getElementById("answerThree");
 var fourthBtn = document.getElementById("answerFour");
 
+//Array for the buttons to assist in randomizing
+var btnArray = [firstBtn, secondBtn, thirdBtn, fourthBtn];
+
 //Console logs to test
 console.log(questionArray[0].question);
 
 function displayQuestion(i){
     var display = questionArray[i].question;
     quest.innerHTML=display;
+
 }
 
+//Random number non-repeating 
+randomArray = [];
+for(var i = 0, randomArray = []; i < 4; i++){
+    randomArray[i] = i;
+}
+
+randomArray.sort(function(){
+    return Math.random() - 0.5;
+});
+
+function displayBtns(){
+    for(let i = 0; i < randomArray.length; i++){
+        btnArray[i].innerHTML = questionArray[0].answers[i];
+    }
+}
+
+console.log(randomArray);
+displayBtns();
 displayQuestion(0);
 };
