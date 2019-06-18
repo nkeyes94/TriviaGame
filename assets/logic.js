@@ -7,10 +7,13 @@ var questionArray = [
     {question: "What is 2 x 2?", correctAnswer: "4", answers: ["4", "5", "6", "7"]},
 ]
 
+//Global vars
+var winRate = 0;
+var lossRate = 0;
+
 //Grabbing the elements from HTML and creating variables for them
 var quest = document.getElementById("question");
 var timeDiv = document.getElementById("timeRemaining");
-var answerDiv = document.getElementById("answers");
 var winTracker = document.getElementById("winrate");
 var lossTracker = document.getElementById("lossrate");
 
@@ -65,10 +68,32 @@ function timer(){
     }, 10000);
 }
 
+// while(timeDiv.innerHTML > 0){
+//     if(btnArray[0] == questionArray[0].correctAnswer){
+//         alert("Win");
+//         winRate++;
+//         console.log("win");
+//     }else if(btnArray[1] == questionArray[0].correctAnswer){
+//         alert("Win");
+//         winRate++;
+//         console.log("Win 2");
+//     }else if(btnArray[2] == questionArray[0].correctAnswer){
+//         alert("Win");
+//         winRate++;
+//         console.log("Win 3");
+//     }else if(btnArray[3] == questionArray[0].correctAnswer){
+//         alert("Win");
+//         winRate++;
+//         console.log("Win 4");
+//     }
+// }
+
+firstBtn.on("click", function(){
+    console.log(firstBtn.innerHTML);
+})
+
 
 timer();
-
-
 displayButtons();
 
 // console.log(randomArray);

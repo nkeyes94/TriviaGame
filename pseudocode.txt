@@ -40,3 +40,27 @@ JS:
     -If the question is answered correctly, increase the win rate
         -Take the win and loss rate and give and average them together to give the player an overall score
 -Create buttons which will update dynamically per question 
+
+---------------------------------------------------------------------------------------------------------------------------------
+Further game logic:
+-Make the game start
+    -This can be done by a boolean, once the page loads, set the boolean to true
+-When the game has started:
+    -Track the time per question
+    -Once the time runs out, end the game, increase the loss rate
+    -If the user answers correctly, increase the win rate
+-In order to track the games answers:
+    -For the btn array, set a value
+        -for(var i = 0; i < btnArray.length; i++){
+            btnArray[i].value = questionArray[0].answers[i];
+        }
+    -Perhaps set this into a function, so that the function can be passed information about the game stage
+        -This would require a var
+            -let this var be turn = 0;
+        -while(!gamerunning){
+            gameRunning = true;
+            gameStart(v);
+                -The game start function should house the previous for loop
+                -V being an int to track the roun
+                -Once the current round ends, increase v (v++)
+        }
