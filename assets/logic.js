@@ -7,12 +7,6 @@ var questionArray = [
     {question: "What is 2 x 2?", correctAnswer: "4", answers: ["4", "5", "6", "7"]},
 ]
 
-//Create a random number generator for selecting random questions
-function randomNumber(){
-    var randomNum = Math.floor(Math.random() * (1, 4));
-    return randomNum;
-}
-
 //Grabbing the elements from HTML and creating variables for them
 var quest = document.getElementById("question");
 var timeDiv = document.getElementById("timeRemaining");
@@ -49,13 +43,35 @@ randomArray.sort(function(){
     return Math.random() - 0.5;
 });
 
-function displayBtns(){
-    for(let i = 0; i < randomArray.length; i++){
-        btnArray[i].innerHTML = questionArray[0].answers[i];
+console.log(randomArray);
+
+function displayButtons(){
+    for(i = 0; i < btnArray.length; i++){
+        btnArray[i].innerHTML = questionArray[0].answers[randomArray[i]];
     }
 }
 
-console.log(randomArray);
-displayBtns();
+//Timer
+var time = 10;
+timeDiv.innerHTML=time;
+function timer(){
+    var int = setInterval(function(){
+        time--; 
+        timeDiv.innerHTML=time;
+        console.log(time);
+    }, 1000);
+    setTimeout(function(){
+        clearInterval(int)
+    }, 10000);
+}
+
+
+timer();
+
+
+displayButtons();
+
+// console.log(randomArray);
+// displayBtns();
 displayQuestion(0);
 };
