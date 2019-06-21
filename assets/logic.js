@@ -1,102 +1,147 @@
-//Load the page prior to launching JS logic
 window.onload=function(){
+    var winRate = 0;
+    var lossRate = 0;
+    var timeDiv = document.getElementById("timeRemaining");
+    var gameboard = document.getElementById("gameboard");
+    var startBtn = document.getElementById("start");
+    var wins = document.getElementById("wins");
+    var losses = document.getElementById("losses");
 
-//Array of questions with another array of answers
-var questionArray = [
-    {question: "What is 1+1?", correctAnswer: "2", answers: ["2", "3", "4", "1"]},
-    {question: "What is 2 x 2?", correctAnswer: "4", answers: ["4", "5", "6", "7"]},
-]
+    var time = 5;
+    timeDiv.innerHTML=time;
 
-//Global vars
-var winRate = 0;
-var lossRate = 0;
-
-//Grabbing the elements from HTML and creating variables for them
-var quest = document.getElementById("question");
-var timeDiv = document.getElementById("timeRemaining");
-var winTracker = document.getElementById("winrate");
-var lossTracker = document.getElementById("lossrate");
-
-//Grabbing the button elements and creating variables for them
-//The buttons should be assigned random values from the question array
-var firstBtn = document.getElementById("answerOne");
-var secondBtn = document.getElementById("answerTwo");
-var thirdBtn = document.getElementById("answerThree");
-var fourthBtn = document.getElementById("answerFour");
-
-//Array for the buttons to assist in randomizing
-var btnArray = [firstBtn, secondBtn, thirdBtn, fourthBtn];
-
-//Console logs to test
-console.log(questionArray[0].question);
-
-function displayQuestion(i){
-    var display = questionArray[i].question;
-    quest.innerHTML=display;
-
-}
-
-//Random number non-repeating 
-randomArray = [];
-for(var i = 0, randomArray = []; i < 4; i++){
-    randomArray[i] = i;
-}
-
-randomArray.sort(function(){
-    return Math.random() - 0.5;
-});
-
-console.log(randomArray);
-
-function displayButtons(){
-    for(i = 0; i < btnArray.length; i++){
-        btnArray[i].innerHTML = questionArray[0].answers[randomArray[i]];
+    function increaseWR(){
+        winRate = winRate + 1;
+        wins.innerHTML=winRate;
+        console.log("WR Increase");
     }
+
+    function increaseLR(){
+        lossRate = lossRate + 1;
+        losses.innerHTML=lossRate;
+        console.log("LR Increase");
+    }
+    
+
+    var question = [
+        function question(){                //Index 0
+            gameboard.innerHTML=" ";
+            gameboard.innerHTML="What is 1 + 1?";
+            var answers = ["1", "2", "3", "4"];
+            var correctAnswer = "2";
+            var createBR = document.createElement("BR");
+            gameboard.appendChild(createBR);
+            
+            for(var i = 0; i < answers.length; i++){
+                var btn = document.createElement("BUTTON");
+                btn.val = answers[i];
+                btn.innerHTML=answers[i];
+                gameboard.appendChild(btn);
+                console.log(btn);
+                console.log(btn.val);
+                btn.onclick = function(){
+                    if(this.val == correctAnswer){
+                        alert("Correct!");
+                        increaseWR();
+                        clearTimeout(TO);
+                        console.log("correct");
+                    }else{
+                        this.disabled=true;
+                        increaseLR();
+                    }
+                };
+                console.log(winRate);
+                console.log(lossRate);
+            }
+        },                                 //End of index 0
+
+        function questionTwo(){               //Start of index 1
+            gameboard.innerHTML=" ";
+            gameboard.innerHTML="What is 2 * 2?";
+            var answers = ["1", "2", "3", "4"];
+            var correctAnswer = "4";
+            var createBR = document.createElement("BR");
+            gameboard.appendChild(createBR);
+            
+            for(var i = 0; i < answers.length; i++){
+                var btn = document.createElement("BUTTON");
+                btn.val = answers[i];
+                btn.innerHTML=answers[i];
+                gameboard.appendChild(btn);
+                console.log(btn);
+                console.log(btn.val);
+                btn.onclick = function(){
+                    if(this.val == correctAnswer){
+                        alert("Correct!");
+                        increaseWR();
+                        clearInterval(timer);
+                        console.log("correct");
+                    }else{
+                        this.disabled=true;
+                        increaseLR();
+                    }
+                }
+                console.log(winRate);
+                console.log(lossRate);
+            }
+        },                                 //End of index 1
+
+        function questionThree(){               //Start of index 2
+            gameboard.innerHTML=" ";
+            gameboard.innerHTML="When was America founded?";
+            var answers = ["1945", "1832", "1776", "1743"];
+            var correctAnswer = "1776";
+            var createBR = document.createElement("BR");
+            gameboard.appendChild(createBR);
+            
+            for(var i = 0; i < answers.length; i++){
+                var btn = document.createElement("BUTTON");
+                btn.val = answers[i];
+                btn.innerHTML=answers[i];
+                gameboard.appendChild(btn);
+                console.log(btn);
+                console.log(btn.val);
+                btn.onclick = function(){
+                    if(this.val == correctAnswer){
+                        alert("Correct!");
+                        increaseWR();
+                        console.log("correct");
+                    }else{
+                        this.disabled=true;
+                        increaseLR();
+                    }
+                }
+                console.log(winRate);
+                console.log(lossRate);
+            }
+        },                               //End of index 2
+    ];
+    var interval = 5000;
+    startBtn.addEventListener("click", function(){
+        console.log("start btn");
+        question.forEach(function(el, index){
+            setTimeout(function(){
+                question[index]();
+                console.log("el = "+ el);
+                time = 5;
+                function timer(){
+                    var int = setInterval(function(){
+                        timeRunning = true;
+                        time--; 
+                        timeDiv.innerHTML=time;
+                        if(time == 0){
+                            clearInterval(int);
+                        }
+                        console.log(time);
+                        }, 1000);
+                    setTimeout(function(){
+                        timeRunning = false;
+                        clearInterval(int)
+                        }, 5000);
+                    }
+                    timer();
+            }, interval * index)
+        })
+        });
+
 }
-
-//Timer
-var time = 10;
-timeDiv.innerHTML=time;
-function timer(){
-    var int = setInterval(function(){
-        time--; 
-        timeDiv.innerHTML=time;
-        console.log(time);
-    }, 1000);
-    setTimeout(function(){
-        clearInterval(int)
-    }, 10000);
-}
-
-// while(timeDiv.innerHTML > 0){
-//     if(btnArray[0] == questionArray[0].correctAnswer){
-//         alert("Win");
-//         winRate++;
-//         console.log("win");
-//     }else if(btnArray[1] == questionArray[0].correctAnswer){
-//         alert("Win");
-//         winRate++;
-//         console.log("Win 2");
-//     }else if(btnArray[2] == questionArray[0].correctAnswer){
-//         alert("Win");
-//         winRate++;
-//         console.log("Win 3");
-//     }else if(btnArray[3] == questionArray[0].correctAnswer){
-//         alert("Win");
-//         winRate++;
-//         console.log("Win 4");
-//     }
-// }
-
-firstBtn.on("click", function(){
-    console.log(firstBtn.innerHTML);
-})
-
-
-timer();
-displayButtons();
-
-// console.log(randomArray);
-// displayBtns();
-displayQuestion(0);
-};

@@ -5,34 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- Style sheet -->
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
 <body>
-    <script type="text/javascript" src="assets/logic.js"></script>
-
-    <!-- Create a div to display the question -->
-    <div id="questionDiv">
-        <h2 id="question">" "</h2>
-    </div>
-
-    <!-- Create a div to display the time remaining -->
+    <h1>Trivia!</h1>
+    
     <div id="timeRemaining">
 
     </div>
-
-    <!-- Create a div to display the answers -->
-    <div id="answers">
-        <button id="answerOne" class="btn">1</button>
-        <button id="answerTwo" class="btn">2</button>
-        <button id="answerThree" class="btn">3</button>
-        <button id="answerFour" class="btn">4</button>
+    <div id="gameboard">
+        <button id="start">Start</button>
     </div>
 
-    <!-- Create a tracker div -->
     <div id="tracker">
-        <!-- Track the winrate -->
-        <p id="winrate"></p>
-        <!-- Track the lossrate -->
-        <p id="lossrate"></p>
+        <p id="wins"></p>
+        <p id="losses"></p>
     </div>
+    <!-- JS -->
+    <script type="text/javascript" src="assets/logic.js"></script>
 </body>
 </html>
